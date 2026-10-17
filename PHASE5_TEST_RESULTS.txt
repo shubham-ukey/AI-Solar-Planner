@@ -1,0 +1,12 @@
+Phase 5 test status
+===================
+Added Vitest/React Testing Library coverage for:
+- AI disabled/fallback behavior
+- FAQ schema rejection and fallback
+- request timeout fallback
+- unsupported-number rejection and fallback labeling
+- chatbot rendering, open/close, Escape key, and suggested-question response
+- fallback summary cases: roof-limited, subsidy limit exceeded, null payback, battery selected
+- pure number guard accept/reject cases
+
+Execution status: NOT RUN. `npm install --no-audit --no-fund` timed out in the current environment, so Vitest and production build could not be executed. Do not treat these tests as passing until `npm test` and `npm run build` complete locally/CI.

@@ -1,0 +1,13 @@
+Phase 7 test status: test files added; full suite not executed in this environment.
+
+Added tests:
+- AdminRoute redirects and authenticated rendering
+- Demo login success/failure/session expiry/logout
+- Lead list search, filter and status update/revenue refresh
+- Allowed status transitions and status history
+- Revenue estimate uses stored net costs for Approved/Installed only
+- CSV BOM, escaping, formula injection, and empty export
+- Delete confirmation dialog and Escape behaviour
+- Seed-data loading and local storage initialization
+
+Execution limitation: dependency installation has timed out in this environment in previous phases, so Vitest/RTL results are not claimed as passing. Run `npm install`, then `npm test` locally. Build also remains pending local dependency installation.

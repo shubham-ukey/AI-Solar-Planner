@@ -1,0 +1,32 @@
+ai-solar-installation-planner/
+├── src/
+│   ├── components/
+│   │   ├── FieldError.jsx
+│   │   ├── StepAssumptions.jsx
+│   │   ├── StepConsumption.jsx
+│   │   ├── StepEligibility.jsx
+│   │   ├── StepLocation.jsx
+│   │   └── StepRoof.jsx
+│   ├── config/                 # existing Phase 1 JSON configs
+│   ├── context/WizardContext.jsx
+│   ├── engine/                 # existing pure calculation/subsidy functions
+│   ├── hooks/useSolarPlan.js
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── Planner.jsx
+│   │   └── Results.jsx
+│   ├── services/               # existing Phase 1 service placeholders
+│   ├── tests/
+│   │   ├── calculations.test.js
+│   │   ├── planner.test.jsx
+│   │   ├── schemas.test.js
+│   │   └── subsidy.test.js
+│   ├── utils/
+│   │   ├── formatters.js       # existing
+│   │   ├── schemas.js
+│   │   └── validators.js       # existing
+│   ├── main.jsx
+│   └── styles.css
+├── package.json
+├── vitest.config.js
+└── README.md

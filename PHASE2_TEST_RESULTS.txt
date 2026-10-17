@@ -1,0 +1,16 @@
+AI Solar Installation Planner — Phase 2 validation report
+
+Added tests:
+- src/tests/schemas.test.js: five Zod schema tests.
+- src/tests/planner.test.jsx: full wizard happy path and eligibility validation-error path.
+- src/tests/subsidy.test.js: explicitly asserts SRS Section 6.2 cap at 2.01, 2.5, 3 and 5 kW.
+
+Execution status in this environment:
+- npm install: BLOCKED; npm registry DNS failed with EAI_AGAIN while resolving registry.npmjs.org.
+- npm test: NOT RUN; `vitest: not found` because dependencies could not be installed.
+- npm run build: NOT RUN; `vite: not found` because dependencies could not be installed.
+
+No passing test count is claimed. After network/dependencies are available, run:
+  npm install
+  npm test
+  npm run build

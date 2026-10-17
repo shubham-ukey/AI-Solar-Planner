@@ -1,0 +1,12 @@
+Phase 6 test status
+===================
+Manual sanity checks: PASS
+- Proposal ID format: SOL-2026-0001
+- 1,000 sequential proposal IDs were unique in a single run
+- WhatsApp URL decoded text exactly matched the source text
+- package.json parses as valid JSON
+- Node syntax checks passed for all .js files
+- Fixed a pre-existing syntax error in src/tests/calculations.test.js (missing closing parenthesis)
+
+Vitest / React Testing Library suite: NOT RUN
+Reason: vitest was not present in node_modules; npm install --no-audit --no-fund timed out twice in this environment. No full-suite pass is claimed.

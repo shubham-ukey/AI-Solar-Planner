@@ -1,0 +1,32 @@
+Added:
+firestore.rules
+README_PHASE7.md
+PHASE7_TEST_RESULTS.txt
+FILE_TREE_PHASE7.txt
+src/engine/revenue.js
+src/utils/leadStatus.js
+src/utils/leadsCsv.js
+src/utils/adminFilters.js
+src/services/adminAuth.js
+src/services/leads.js (expanded Phase 6 interface)
+src/data/seedLeads.json (five fictional leads)
+src/components/AdminRoute.jsx
+src/components/AdminShell.jsx
+src/components/DeleteLeadDialog.jsx
+src/pages/AdminLogin.jsx
+src/pages/AdminLeads.jsx
+src/pages/AdminLeadDetail.jsx
+src/tests/leadStatus.test.js
+src/tests/revenue.test.js
+src/tests/leadsCsv.test.js
+src/tests/adminAuth.test.js
+src/tests/adminRoute.test.jsx
+src/tests/seedLeads.test.js
+src/tests/AdminLeads.test.jsx
+src/tests/AdminLogin.test.jsx
+src/tests/DeleteLeadDialog.test.jsx
+
+Updated:
+src/main.jsx
+src/styles.css
+.env.example

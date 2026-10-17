@@ -1,0 +1,11 @@
+{
+  "discoms": [
+    {
+      "stateCode": "MH",
+      "state": "Maharashtra",
+      "name": "Manual / enter local DISCOM",
+      "defaultTariff": 7
+    }
+  ],
+  "note": "Only a generic editable tariff placeholder is included. Replace with verified DISCOM tariff data and record source/date before deployment."
+}

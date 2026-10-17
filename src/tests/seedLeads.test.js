@@ -1,0 +1,2 @@
+import {beforeEach,it,expect} from 'vitest';import {listLeads} from '../services/leads.js';
+beforeEach(()=>{localStorage.clear();});it('loads five dummy seed leads when local storage is empty and Firebase disabled',async()=>{const rows=await listLeads();expect(rows).toHaveLength(5);expect(rows.map(x=>x.status)).toEqual(expect.arrayContaining(['Lead','Survey Done','Proposal Sent','Approved','Closed Lost']));expect(rows.some(x=>x.results.systemKW===5)).toBe(true);expect(JSON.parse(localStorage.getItem('solar-planner-leads-v1'))).toHaveLength(5);});

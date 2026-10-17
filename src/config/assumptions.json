@@ -1,0 +1,49 @@
+{
+  "psh": 4.5,
+  "performanceRatio": 0.78,
+  "panelWatt": 540,
+  "costPerKW": 60000,
+  "tariff": 7,
+  "exportRate": 7,
+  "degradationRate": 0.005,
+  "tariffEscalationRate": 0.04,
+  "annualLoanRate": 9,
+  "emissionFactorKgPerKWh": 0.82,
+  "depthOfDischarge": {
+    "lithium": 0.8,
+    "leadAcid": 0.5
+  },
+  "shadowLossFactors": {
+    "none": 0,
+    "low": 0.05,
+    "medium": 0.1,
+    "high": 0.2
+  },
+  "directionFactors": {
+    "south": 1,
+    "south-west": 0.96,
+    "south-east": 0.96,
+    "east": 0.92,
+    "west": 0.92,
+    "north": 0.85
+  },
+  "standardInverterSizesKW": [
+    1,
+    1.5,
+    2,
+    3,
+    5,
+    7.5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    50,
+    100
+  ],
+  "roofAreaSqFtPerKW": 100,
+  "panelDegradationSource": "SRS Section 6.9",
+  "costPerKWSource": "Editable placeholder midpoint of the SRS range \u20b955,000\u2013\u20b965,000; replace with verified local quotation.",
+  "costPerKWLastVerified": "NOT_VERIFIED"
+}

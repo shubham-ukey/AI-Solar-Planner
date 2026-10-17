@@ -1,0 +1,21 @@
+{
+  "scheme": "PM Surya Ghar: Muft Bijli Yojana",
+  "slabs": [
+    {
+      "upToKW": 1,
+      "ratePerKW": 30000
+    },
+    {
+      "upToKW": 2,
+      "ratePerKW": 30000
+    },
+    {
+      "upToKW": 3,
+      "fixedCap": 78000
+    }
+  ],
+  "maxSubsidy": 78000,
+  "lastVerified": "NOT_VERIFIED",
+  "sourceUrl": "https://pmsuryaghar.gov.in",
+  "notes": "Values transcribed from the supplied SRS; verify against the official portal before real-world use."
+}
