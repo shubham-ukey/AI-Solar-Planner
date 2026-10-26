@@ -31,27 +31,27 @@ Performance smoke checks are in `src/tests/performance.test.js`. They test deter
 
 All `VITE_*` values are embedded in the browser build and are **public**. Never put a private API key in a `VITE_*` variable.
 
-| Variable | Visibility | Purpose |
-|---|---|---|
-| `VITE_ENABLE_GOOGLE_MAPS` | Public toggle | Enable Maps UI only if a real Maps integration is present. A lazy-loaded Places Autocomplete component fills formatted address, city, state, PIN code and coordinates when the Maps key is configured; manual entry remains available if disabled or unavailable. |
-| `VITE_GOOGLE_MAPS_API_KEY` | Public browser key | Google Maps browser API key; restrict by HTTP referrer and API. |
-| `VITE_ENABLE_SOLAR_API` | Public toggle | Reserved for optional Google Solar API; not wired into this version. |
-| `VITE_ENABLE_AI` | Public toggle | Enables AI only when set to `true`. |
-| `VITE_AI_PROXY_URL` | Public URL | Backend proxy URL, e.g. `/api/ai`; no provider secret here. |
-| `AI_PROVIDER_API_KEY` | **Secret, server-only** | Provider key used by `api/ai.js`; set in Vercel project environment settings, never as `VITE_*`. |
-| `AI_PROVIDER_URL` | Server-side config | OpenAI-compatible provider endpoint used by proxy. |
-| `AI_MODEL` | Server-side config | Provider model name. |
-| `VITE_ENABLE_EMAILJS` | Public toggle | Enables EmailJS when all three identifiers are present. |
-| `VITE_EMAILJS_SERVICE_ID` | Public | EmailJS service ID. |
-| `VITE_EMAILJS_TEMPLATE_ID` | Public | EmailJS template ID. |
-| `VITE_EMAILJS_PUBLIC_KEY` | Public | EmailJS public key. Restrict allowed origins in EmailJS. |
-| `VITE_ENABLE_FIREBASE` | Public toggle | Enables Firebase services/auth when configured. |
-| `VITE_FIREBASE_API_KEY` | Public web config | Firebase browser config, not an authorization boundary. |
-| `VITE_FIREBASE_AUTH_DOMAIN` | Public web config | Firebase Auth domain. |
-| `VITE_FIREBASE_PROJECT_ID` | Public web config | Firebase project ID. |
-| `VITE_FIREBASE_APP_ID` | Public web config | Firebase app ID. |
-| `VITE_FIREBASE_STORAGE_BUCKET` | Public web config | Firebase storage bucket, currently not required by core flow. |
-| `VITE_ADMIN_DEMO_PASSWORD` | **Public in the browser bundle** | Local demo login only. Never use it for production authentication. |
+| Variable                       | Visibility                       | Purpose                                                                                                                                                                                                                                                           |
+| ------------------------------ | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `VITE_ENABLE_GOOGLE_MAPS`      | Public toggle                    | Enable Maps UI only if a real Maps integration is present. A lazy-loaded Places Autocomplete component fills formatted address, city, state, PIN code and coordinates when the Maps key is configured; manual entry remains available if disabled or unavailable. |
+| `VITE_GOOGLE_MAPS_API_KEY`     | Public browser key               | Google Maps browser API key; restrict by HTTP referrer and API.                                                                                                                                                                                                   |
+| `VITE_ENABLE_SOLAR_API`        | Public toggle                    | Reserved for optional Google Solar API; not wired into this version.                                                                                                                                                                                              |
+| `VITE_ENABLE_AI`               | Public toggle                    | Enables AI only when set to `true`.                                                                                                                                                                                                                               |
+| `VITE_AI_PROXY_URL`            | Public URL                       | Backend proxy URL, e.g. `/api/ai`; no provider secret here.                                                                                                                                                                                                       |
+| `AI_PROVIDER_API_KEY`          | **Secret, server-only**          | Provider key used by `api/ai.js`; set in Vercel project environment settings, never as `VITE_*`.                                                                                                                                                                  |
+| `AI_PROVIDER_URL`              | Server-side config               | OpenAI-compatible provider endpoint used by proxy.                                                                                                                                                                                                                |
+| `AI_MODEL`                     | Server-side config               | Provider model name.                                                                                                                                                                                                                                              |
+| `VITE_ENABLE_EMAILJS`          | Public toggle                    | Enables EmailJS when all three identifiers are present.                                                                                                                                                                                                           |
+| `VITE_EMAILJS_SERVICE_ID`      | Public                           | EmailJS service ID.                                                                                                                                                                                                                                               |
+| `VITE_EMAILJS_TEMPLATE_ID`     | Public                           | EmailJS template ID.                                                                                                                                                                                                                                              |
+| `VITE_EMAILJS_PUBLIC_KEY`      | Public                           | EmailJS public key. Restrict allowed origins in EmailJS.                                                                                                                                                                                                          |
+| `VITE_ENABLE_FIREBASE`         | Public toggle                    | Enables Firebase services/auth when configured.                                                                                                                                                                                                                   |
+| `VITE_FIREBASE_API_KEY`        | Public web config                | Firebase browser config, not an authorization boundary.                                                                                                                                                                                                           |
+| `VITE_FIREBASE_AUTH_DOMAIN`    | Public web config                | Firebase Auth domain.                                                                                                                                                                                                                                             |
+| `VITE_FIREBASE_PROJECT_ID`     | Public web config                | Firebase project ID.                                                                                                                                                                                                                                              |
+| `VITE_FIREBASE_APP_ID`         | Public web config                | Firebase app ID.                                                                                                                                                                                                                                                  |
+| `VITE_FIREBASE_STORAGE_BUCKET` | Public web config                | Firebase storage bucket, currently not required by core flow.                                                                                                                                                                                                     |
+| `VITE_ADMIN_DEMO_PASSWORD`     | **Public in the browser bundle** | Local demo login only. Never use it for production authentication.                                                                                                                                                                                                |
 
 ## Project structure
 

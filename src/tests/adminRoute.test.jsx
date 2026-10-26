@@ -1,3 +1,38 @@
-import React from 'react';import {describe,it,expect,vi,beforeEach} from 'vitest';import {render,screen} from '@testing-library/react';import {MemoryRouter,Routes,Route} from 'react-router-dom';import AdminRoute from '../components/AdminRoute.jsx';
-vi.mock('../services/adminAuth.js',()=>({getAdminSession:vi.fn()}));import {getAdminSession} from '../services/adminAuth.js';
-describe('AdminRoute',()=>{beforeEach(()=>vi.clearAllMocks());it('redirects unauthenticated visitors to /admin',()=>{getAdminSession.mockReturnValue(null);render(<MemoryRouter initialEntries={['/admin/leads']}><Routes><Route path="/admin" element={<p>Login page</p>}/><Route element={<AdminRoute/>}><Route path="/admin/leads" element={<p>Leads page</p>}/></Route></Routes></MemoryRouter>);expect(screen.getByText('Login page')).toBeInTheDocument();});it('renders protected content with a session',()=>{getAdminSession.mockReturnValue({expiresAt:Date.now()+10000});render(<MemoryRouter initialEntries={['/admin/leads']}><Routes><Route path="/admin" element={<p>Login page</p>}/><Route element={<AdminRoute/>}><Route path="/admin/leads" element={<p>Leads page</p>}/></Route></Routes></MemoryRouter>);expect(screen.getByText('Leads page')).toBeInTheDocument();});});
+import React from "react";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
+import AdminRoute from "../components/AdminRoute.jsx";
+vi.mock("../services/adminAuth.js", () => ({ getAdminSession: vi.fn() }));
+import { getAdminSession } from "../services/adminAuth.js";
+describe("AdminRoute", () => {
+	beforeEach(() => vi.clearAllMocks());
+	it("redirects unauthenticated visitors to /admin", () => {
+		getAdminSession.mockReturnValue(null);
+		render(
+			<MemoryRouter initialEntries={["/admin/leads"]}>
+				<Routes>
+					<Route path="/admin" element={<p>Login page</p>} />
+					<Route element={<AdminRoute />}>
+						<Route path="/admin/leads" element={<p>Leads page</p>} />
+					</Route>
+				</Routes>
+			</MemoryRouter>,
+		);
+		expect(screen.getByText("Login page")).toBeInTheDocument();
+	});
+	it("renders protected content with a session", () => {
+		getAdminSession.mockReturnValue({ expiresAt: Date.now() + 10000 });
+		render(
+			<MemoryRouter initialEntries={["/admin/leads"]}>
+				<Routes>
+					<Route path="/admin" element={<p>Login page</p>} />
+					<Route element={<AdminRoute />}>
+						<Route path="/admin/leads" element={<p>Leads page</p>} />
+					</Route>
+				</Routes>
+			</MemoryRouter>,
+		);
+		expect(screen.getByText("Leads page")).toBeInTheDocument();
+	});
+});

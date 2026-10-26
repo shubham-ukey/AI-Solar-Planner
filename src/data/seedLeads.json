@@ -1,7 +1,205 @@
 [
- {"id":"lead-demo-001","clientId":"CLIENT-001","proposalId":"SOL-2026-1001","name":"Aarav Sharma","email":"aarav.demo@example.com","phone":"9000000101","city":"Nagpur","state":"Maharashtra","consentGiven":true,"status":"Lead","statusHistory":[],"notes":[],"assignedTo":"Priya","revenueEstimate":0,"createdAt":"2026-09-02T09:00:00.000Z","updatedAt":"2026-09-02T09:00:00.000Z","inputs":{"monthlyUnits":240,"roofAreaSqFt":450,"state":"Maharashtra"},"results":{"systemKW":2,"panelCount":4,"annualGenerationKWh":2920,"centralSubsidy":30000,"stateSubsidy":0,"totalCost":120000,"netCost":90000,"monthlySavings":1800,"paybackYears":4.2}},
- {"id":"lead-demo-002","clientId":"CLIENT-002","proposalId":"SOL-2026-1002","name":"Isha Patil","email":"isha.demo@example.com","phone":"9000000102","city":"Pune","state":"Maharashtra","consentGiven":true,"status":"Survey Done","statusHistory":[{"from":"Lead","to":"Survey Done","at":"2026-09-04T09:00:00.000Z"}],"notes":[{"text":"Roof measurement completed.","at":"2026-09-04T09:00:00.000Z","by":"Priya"}],"assignedTo":"Priya","revenueEstimate":0,"createdAt":"2026-09-03T09:00:00.000Z","updatedAt":"2026-09-04T09:00:00.000Z","inputs":{"monthlyUnits":390,"roofAreaSqFt":620,"state":"Maharashtra"},"results":{"systemKW":3,"panelCount":6,"annualGenerationKWh":4380,"centralSubsidy":78000,"stateSubsidy":0,"totalCost":180000,"netCost":102000,"monthlySavings":3100,"paybackYears":3.1}},
- {"id":"lead-demo-003","clientId":"CLIENT-003","proposalId":"SOL-2026-1003","name":"Kabir Verma","email":"kabir.demo@example.com","phone":"9000000103","city":"Indore","state":"Madhya Pradesh","consentGiven":true,"status":"Proposal Sent","statusHistory":[{"from":"Lead","to":"Survey Done","at":"2026-09-05T09:00:00.000Z"},{"from":"Survey Done","to":"Proposal Sent","at":"2026-09-06T09:00:00.000Z"}],"notes":[],"assignedTo":"Rohan","revenueEstimate":0,"createdAt":"2026-09-05T09:00:00.000Z","updatedAt":"2026-09-06T09:00:00.000Z","inputs":{"monthlyUnits":520,"roofAreaSqFt":800,"state":"Madhya Pradesh"},"results":{"systemKW":4,"panelCount":8,"annualGenerationKWh":5840,"centralSubsidy":78000,"stateSubsidy":5000,"totalCost":240000,"netCost":157000,"monthlySavings":4200,"paybackYears":3.2}},
- {"id":"lead-demo-004","clientId":"CLIENT-004","proposalId":"SOL-2026-1004","name":"Meera Joshi","email":"meera.demo@example.com","phone":"9000000104","city":"Ahmedabad","state":"Gujarat","consentGiven":true,"status":"Approved","statusHistory":[{"from":"Lead","to":"Survey Done","at":"2026-09-07T09:00:00.000Z"},{"from":"Survey Done","to":"Proposal Sent","at":"2026-09-08T09:00:00.000Z"},{"from":"Proposal Sent","to":"Approved","at":"2026-09-09T09:00:00.000Z"}],"notes":[{"text":"Customer approved quote, scheduling installation.","at":"2026-09-09T09:00:00.000Z","by":"Rohan"}],"assignedTo":"Rohan","revenueEstimate":198000,"createdAt":"2026-09-07T09:00:00.000Z","updatedAt":"2026-09-09T09:00:00.000Z","inputs":{"monthlyUnits":690,"roofAreaSqFt":1000,"state":"Gujarat"},"results":{"systemKW":5,"panelCount":10,"annualGenerationKWh":7300,"centralSubsidy":78000,"stateSubsidy":10000,"totalCost":310000,"netCost":198000,"monthlySavings":5200,"paybackYears":3.2}},
- {"id":"lead-demo-005","clientId":"CLIENT-005","proposalId":"SOL-2026-1005","name":"Dev Nair","email":"dev.demo@example.com","phone":"9000000105","city":"Surat","state":"Gujarat","consentGiven":true,"status":"Closed Lost","statusHistory":[{"from":"Lead","to":"Closed Lost","at":"2026-09-10T09:00:00.000Z"}],"notes":[{"text":"Customer deferred project.","at":"2026-09-10T09:00:00.000Z","by":"Demo admin"}],"assignedTo":"Unassigned","revenueEstimate":0,"createdAt":"2026-09-10T09:00:00.000Z","updatedAt":"2026-09-10T09:00:00.000Z","inputs":{"monthlyUnits":180,"roofAreaSqFt":300,"state":"Gujarat"},"results":{"systemKW":1.5,"panelCount":3,"annualGenerationKWh":2190,"centralSubsidy":18000,"stateSubsidy":0,"totalCost":90000,"netCost":72000,"monthlySavings":1300,"paybackYears":4.6}}
+	{
+		"id": "lead-demo-001",
+		"clientId": "CLIENT-001",
+		"proposalId": "SOL-2026-1001",
+		"name": "Aarav Sharma",
+		"email": "aarav.demo@example.com",
+		"phone": "9000000101",
+		"city": "Nagpur",
+		"state": "Maharashtra",
+		"consentGiven": true,
+		"status": "Lead",
+		"statusHistory": [],
+		"notes": [],
+		"assignedTo": "Priya",
+		"revenueEstimate": 0,
+		"createdAt": "2026-09-02T09:00:00.000Z",
+		"updatedAt": "2026-09-02T09:00:00.000Z",
+		"inputs": {
+			"monthlyUnits": 240,
+			"roofAreaSqFt": 450,
+			"state": "Maharashtra"
+		},
+		"results": {
+			"systemKW": 2,
+			"panelCount": 4,
+			"annualGenerationKWh": 2920,
+			"centralSubsidy": 30000,
+			"stateSubsidy": 0,
+			"totalCost": 120000,
+			"netCost": 90000,
+			"monthlySavings": 1800,
+			"paybackYears": 4.2
+		}
+	},
+	{
+		"id": "lead-demo-002",
+		"clientId": "CLIENT-002",
+		"proposalId": "SOL-2026-1002",
+		"name": "Isha Patil",
+		"email": "isha.demo@example.com",
+		"phone": "9000000102",
+		"city": "Pune",
+		"state": "Maharashtra",
+		"consentGiven": true,
+		"status": "Survey Done",
+		"statusHistory": [
+			{ "from": "Lead", "to": "Survey Done", "at": "2026-09-04T09:00:00.000Z" }
+		],
+		"notes": [
+			{
+				"text": "Roof measurement completed.",
+				"at": "2026-09-04T09:00:00.000Z",
+				"by": "Priya"
+			}
+		],
+		"assignedTo": "Priya",
+		"revenueEstimate": 0,
+		"createdAt": "2026-09-03T09:00:00.000Z",
+		"updatedAt": "2026-09-04T09:00:00.000Z",
+		"inputs": {
+			"monthlyUnits": 390,
+			"roofAreaSqFt": 620,
+			"state": "Maharashtra"
+		},
+		"results": {
+			"systemKW": 3,
+			"panelCount": 6,
+			"annualGenerationKWh": 4380,
+			"centralSubsidy": 78000,
+			"stateSubsidy": 0,
+			"totalCost": 180000,
+			"netCost": 102000,
+			"monthlySavings": 3100,
+			"paybackYears": 3.1
+		}
+	},
+	{
+		"id": "lead-demo-003",
+		"clientId": "CLIENT-003",
+		"proposalId": "SOL-2026-1003",
+		"name": "Kabir Verma",
+		"email": "kabir.demo@example.com",
+		"phone": "9000000103",
+		"city": "Indore",
+		"state": "Madhya Pradesh",
+		"consentGiven": true,
+		"status": "Proposal Sent",
+		"statusHistory": [
+			{ "from": "Lead", "to": "Survey Done", "at": "2026-09-05T09:00:00.000Z" },
+			{
+				"from": "Survey Done",
+				"to": "Proposal Sent",
+				"at": "2026-09-06T09:00:00.000Z"
+			}
+		],
+		"notes": [],
+		"assignedTo": "Rohan",
+		"revenueEstimate": 0,
+		"createdAt": "2026-09-05T09:00:00.000Z",
+		"updatedAt": "2026-09-06T09:00:00.000Z",
+		"inputs": {
+			"monthlyUnits": 520,
+			"roofAreaSqFt": 800,
+			"state": "Madhya Pradesh"
+		},
+		"results": {
+			"systemKW": 4,
+			"panelCount": 8,
+			"annualGenerationKWh": 5840,
+			"centralSubsidy": 78000,
+			"stateSubsidy": 5000,
+			"totalCost": 240000,
+			"netCost": 157000,
+			"monthlySavings": 4200,
+			"paybackYears": 3.2
+		}
+	},
+	{
+		"id": "lead-demo-004",
+		"clientId": "CLIENT-004",
+		"proposalId": "SOL-2026-1004",
+		"name": "Meera Joshi",
+		"email": "meera.demo@example.com",
+		"phone": "9000000104",
+		"city": "Ahmedabad",
+		"state": "Gujarat",
+		"consentGiven": true,
+		"status": "Approved",
+		"statusHistory": [
+			{ "from": "Lead", "to": "Survey Done", "at": "2026-09-07T09:00:00.000Z" },
+			{
+				"from": "Survey Done",
+				"to": "Proposal Sent",
+				"at": "2026-09-08T09:00:00.000Z"
+			},
+			{
+				"from": "Proposal Sent",
+				"to": "Approved",
+				"at": "2026-09-09T09:00:00.000Z"
+			}
+		],
+		"notes": [
+			{
+				"text": "Customer approved quote, scheduling installation.",
+				"at": "2026-09-09T09:00:00.000Z",
+				"by": "Rohan"
+			}
+		],
+		"assignedTo": "Rohan",
+		"revenueEstimate": 198000,
+		"createdAt": "2026-09-07T09:00:00.000Z",
+		"updatedAt": "2026-09-09T09:00:00.000Z",
+		"inputs": { "monthlyUnits": 690, "roofAreaSqFt": 1000, "state": "Gujarat" },
+		"results": {
+			"systemKW": 5,
+			"panelCount": 10,
+			"annualGenerationKWh": 7300,
+			"centralSubsidy": 78000,
+			"stateSubsidy": 10000,
+			"totalCost": 310000,
+			"netCost": 198000,
+			"monthlySavings": 5200,
+			"paybackYears": 3.2
+		}
+	},
+	{
+		"id": "lead-demo-005",
+		"clientId": "CLIENT-005",
+		"proposalId": "SOL-2026-1005",
+		"name": "Dev Nair",
+		"email": "dev.demo@example.com",
+		"phone": "9000000105",
+		"city": "Surat",
+		"state": "Gujarat",
+		"consentGiven": true,
+		"status": "Closed Lost",
+		"statusHistory": [
+			{ "from": "Lead", "to": "Closed Lost", "at": "2026-09-10T09:00:00.000Z" }
+		],
+		"notes": [
+			{
+				"text": "Customer deferred project.",
+				"at": "2026-09-10T09:00:00.000Z",
+				"by": "Demo admin"
+			}
+		],
+		"assignedTo": "Unassigned",
+		"revenueEstimate": 0,
+		"createdAt": "2026-09-10T09:00:00.000Z",
+		"updatedAt": "2026-09-10T09:00:00.000Z",
+		"inputs": { "monthlyUnits": 180, "roofAreaSqFt": 300, "state": "Gujarat" },
+		"results": {
+			"systemKW": 1.5,
+			"panelCount": 3,
+			"annualGenerationKWh": 2190,
+			"centralSubsidy": 18000,
+			"stateSubsidy": 0,
+			"totalCost": 90000,
+			"netCost": 72000,
+			"monthlySavings": 1300,
+			"paybackYears": 4.6
+		}
+	}
 ]

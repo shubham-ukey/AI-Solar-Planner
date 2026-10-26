@@ -1,7 +1,177 @@
-import React from 'react';import {describe,it,expect,vi} from 'vitest';import {render,screen,fireEvent,waitFor} from '@testing-library/react';import {MemoryRouter,Routes,Route} from 'react-router-dom';import SummaryCards from '../components/SummaryCards.jsx';import EmiCalculator from '../components/EmiCalculator.jsx';import Results from '../pages/Results.jsx';
-const mockPlan={systemKW:3,panelCount:6,requiredRoofAreaSqFt:300,roofAreaSqFt:400,annualGenerationKWh:4500,monthlySavings:2500,netCost:102000,paybackYears:3.4,twentyFiveYearNetProfit:500000,roiPercent:490,co2SavedKgPerYear:3690,requiredKW:3,roofLimited:false};
-vi.mock('../context/WizardContext.jsx',()=>({useWizard:()=>({state:{step:4,eligibility:{residential:'yes'},location:{stateCode:''},consumption:{inputMode:'units',monthlyUnits:300,tariff:7},roof:{roofAreaSqFt:400,direction:'south',shadowLevel:'none'},assumptions:{psh:4.5,performanceRatio:.78,panelWatt:540,costPerKW:60000,tariff:7,exportRate:7,degradationRate:.005,tariffEscalationRate:.04,annualLoanRate:9,emissionFactorKgPerKWh:.82,depthOfDischarge:{lithium:.8,leadAcid:.5},roofAreaSqFtPerKW:100}},dispatch:vi.fn()})}));
-vi.mock('../hooks/useSolarPlan.js',()=>({default:()=>({...mockPlan,monthlyUnits:300,monthlyGenerationKWh:375,centralSubsidy:78000,stateSubsidy:0,totalSubsidy:78000,subsidyScheme:'Test scheme',subsidySource:'https://example.com',lastVerified:null,stateSubsidySource:null,stateLastVerified:null,stateSubsidyScheme:'State subsidy',subsidyLimitKW:2,assumptions:{annualLoanRate:9,depthOfDischarge:{lithium:.8,leadAcid:.5}},rows:Array.from({length:25},(_,i)=>({year:i+1,generationKWh:4500,savings:30000,tariff:7,selfConsumedKWh:3600,exportKWh:900,cumulativeSavings:(i+1)*30000,cumulative:0}))})}));
-describe('SummaryCards',()=>{it('renders summary values and roof warnings',()=>{render(<SummaryCards plan={{...mockPlan,roofLimited:true,requiredRoofAreaSqFt:500}}/>);expect(screen.getByText('3 kW')).toBeInTheDocument();expect(screen.getByText(/Roof-limited design/)).toBeInTheDocument();expect(screen.getByText(/Panels exceed roof area/)).toBeInTheDocument()});it('handles null payback and ROI',()=>{render(<SummaryCards plan={{...mockPlan,paybackYears:null,roiPercent:null}}/>);expect(screen.getByText('No payback with current inputs')).toBeInTheDocument();expect(screen.getByText('Not applicable')).toBeInTheDocument()})});
-describe('EMI form',()=>{it('defaults principal from net cost and recalculates when edited',()=>{render(<EmiCalculator netCost={100000} assumptions={{annualLoanRate:9}}/>);expect(screen.getByLabelText(/Loan principal/)).toHaveValue(100000);fireEvent.change(screen.getByLabelText(/Annual interest rate/),{target:{value:'0'}});expect(screen.getByText(/Total interest/).parentElement).toHaveTextContent('₹0')});it('validates invalid rate',async()=>{render(<EmiCalculator netCost={100000} assumptions={{annualLoanRate:9}}/>);fireEvent.change(screen.getByLabelText(/Annual interest rate/),{target:{value:'120'}});await waitFor(()=>expect(screen.getByText(/100% or less/)).toBeInTheDocument())})});
-describe('Results page',()=>{it('renders the report happy path',()=>{render(<MemoryRouter initialEntries={['/results']}><Routes><Route path="/results" element={<Results/>}/></Routes></MemoryRouter>);expect(screen.getByRole('heading',{name:'Solar plan results'})).toBeInTheDocument();expect(screen.getByText('Subsidy breakdown')).toBeInTheDocument();expect(screen.getByText('Not yet verified')).toBeInTheDocument();expect(screen.getByRole('button',{name:/Download CSV/})).toBeInTheDocument()});it('redirects to planner when there is no wizard data',async()=>{vi.resetModules();const ctx=await import('../context/WizardContext.jsx');vi.spyOn(ctx,'useWizard').mockReturnValue({state:{step:0,eligibility:{residential:''},consumption:{monthlyUnits:0,billAmount:''},assumptions:{},roof:{},location:{} }});const {unmount}=render(<MemoryRouter initialEntries={['/results']}><Routes><Route path="/results" element={<Results/>}/><Route path="/planner" element={<div>Planner redirect destination</div>}/></Routes></MemoryRouter>);await waitFor(()=>expect(screen.getByText('Planner redirect destination')).toBeInTheDocument());unmount()})});
+import React from "react";
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
+import SummaryCards from "../components/SummaryCards.jsx";
+import EmiCalculator from "../components/EmiCalculator.jsx";
+import Results from "../pages/Results.jsx";
+const mockPlan = {
+	systemKW: 3,
+	panelCount: 6,
+	requiredRoofAreaSqFt: 300,
+	roofAreaSqFt: 400,
+	annualGenerationKWh: 4500,
+	monthlySavings: 2500,
+	netCost: 102000,
+	paybackYears: 3.4,
+	twentyFiveYearNetProfit: 500000,
+	roiPercent: 490,
+	co2SavedKgPerYear: 3690,
+	requiredKW: 3,
+	roofLimited: false,
+};
+vi.mock("../context/WizardContext.jsx", () => ({
+	useWizard: () => ({
+		state: {
+			step: 4,
+			eligibility: { residential: "yes" },
+			location: { stateCode: "" },
+			consumption: { inputMode: "units", monthlyUnits: 300, tariff: 7 },
+			roof: { roofAreaSqFt: 400, direction: "south", shadowLevel: "none" },
+			assumptions: {
+				psh: 4.5,
+				performanceRatio: 0.78,
+				panelWatt: 540,
+				costPerKW: 60000,
+				tariff: 7,
+				exportRate: 7,
+				degradationRate: 0.005,
+				tariffEscalationRate: 0.04,
+				annualLoanRate: 9,
+				emissionFactorKgPerKWh: 0.82,
+				depthOfDischarge: { lithium: 0.8, leadAcid: 0.5 },
+				roofAreaSqFtPerKW: 100,
+			},
+		},
+		dispatch: vi.fn(),
+	}),
+}));
+vi.mock("../hooks/useSolarPlan.js", () => ({
+	default: () => ({
+		...mockPlan,
+		monthlyUnits: 300,
+		monthlyGenerationKWh: 375,
+		centralSubsidy: 78000,
+		stateSubsidy: 0,
+		totalSubsidy: 78000,
+		subsidyScheme: "Test scheme",
+		subsidySource: "https://example.com",
+		lastVerified: null,
+		stateSubsidySource: null,
+		stateLastVerified: null,
+		stateSubsidyScheme: "State subsidy",
+		subsidyLimitKW: 2,
+		assumptions: {
+			annualLoanRate: 9,
+			depthOfDischarge: { lithium: 0.8, leadAcid: 0.5 },
+		},
+		rows: Array.from({ length: 25 }, (_, i) => ({
+			year: i + 1,
+			generationKWh: 4500,
+			savings: 30000,
+			tariff: 7,
+			selfConsumedKWh: 3600,
+			exportKWh: 900,
+			cumulativeSavings: (i + 1) * 30000,
+			cumulative: 0,
+		})),
+	}),
+}));
+describe("SummaryCards", () => {
+	it("renders summary values and roof warnings", () => {
+		render(
+			<SummaryCards
+				plan={{ ...mockPlan, roofLimited: true, requiredRoofAreaSqFt: 500 }}
+			/>,
+		);
+		expect(screen.getByText("3 kW")).toBeInTheDocument();
+		expect(screen.getByText(/Roof-limited design/)).toBeInTheDocument();
+		expect(screen.getByText(/Panels exceed roof area/)).toBeInTheDocument();
+	});
+	it("handles null payback and ROI", () => {
+		render(
+			<SummaryCards
+				plan={{ ...mockPlan, paybackYears: null, roiPercent: null }}
+			/>,
+		);
+		expect(
+			screen.getByText("No payback with current inputs"),
+		).toBeInTheDocument();
+		expect(screen.getByText("Not applicable")).toBeInTheDocument();
+	});
+});
+describe("EMI form", () => {
+	it("defaults principal from net cost and recalculates when edited", () => {
+		render(
+			<EmiCalculator netCost={100000} assumptions={{ annualLoanRate: 9 }} />,
+		);
+		expect(screen.getByLabelText(/Loan principal/)).toHaveValue(100000);
+		fireEvent.change(screen.getByLabelText(/Annual interest rate/), {
+			target: { value: "0" },
+		});
+		expect(screen.getByText(/Total interest/).parentElement).toHaveTextContent(
+			"₹0",
+		);
+	});
+	it("validates invalid rate", async () => {
+		render(
+			<EmiCalculator netCost={100000} assumptions={{ annualLoanRate: 9 }} />,
+		);
+		fireEvent.change(screen.getByLabelText(/Annual interest rate/), {
+			target: { value: "120" },
+		});
+		await waitFor(() =>
+			expect(screen.getByText(/100% or less/)).toBeInTheDocument(),
+		);
+	});
+});
+describe("Results page", () => {
+	it("renders the report happy path", () => {
+		render(
+			<MemoryRouter initialEntries={["/results"]}>
+				<Routes>
+					<Route path="/results" element={<Results />} />
+				</Routes>
+			</MemoryRouter>,
+		);
+		expect(
+			screen.getByRole("heading", { name: "Solar plan results" }),
+		).toBeInTheDocument();
+		expect(screen.getByText("Subsidy breakdown")).toBeInTheDocument();
+		expect(screen.getByText("Not yet verified")).toBeInTheDocument();
+		expect(
+			screen.getByRole("button", { name: /Download CSV/ }),
+		).toBeInTheDocument();
+	});
+	it("redirects to planner when there is no wizard data", async () => {
+		vi.resetModules();
+		const ctx = await import("../context/WizardContext.jsx");
+		vi.spyOn(ctx, "useWizard").mockReturnValue({
+			state: {
+				step: 0,
+				eligibility: { residential: "" },
+				consumption: { monthlyUnits: 0, billAmount: "" },
+				assumptions: {},
+				roof: {},
+				location: {},
+			},
+		});
+		const { unmount } = render(
+			<MemoryRouter initialEntries={["/results"]}>
+				<Routes>
+					<Route path="/results" element={<Results />} />
+					<Route
+						path="/planner"
+						element={<div>Planner redirect destination</div>}
+					/>
+				</Routes>
+			</MemoryRouter>,
+		);
+		await waitFor(() =>
+			expect(
+				screen.getByText("Planner redirect destination"),
+			).toBeInTheDocument(),
+		);
+		unmount();
+	});
+});

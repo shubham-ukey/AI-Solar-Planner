@@ -1,2 +1,36 @@
-import {beforeEach,describe,it,expect,vi} from 'vitest';import {loginAdmin,getAdminSession,logoutAdmin} from '../services/adminAuth.js';
-describe('demo admin auth',()=>{beforeEach(()=>{vi.stubEnv('VITE_ENABLE_FIREBASE','false');sessionStorage.clear();});it('logs in with configured demo password and expires after 30 minutes',async()=>{vi.stubEnv('VITE_ADMIN_DEMO_PASSWORD','demo-pass');await loginAdmin({email:'admin@example.com',password:'demo-pass'});expect(getAdminSession()).toMatchObject({email:'admin@example.com'});expect(getAdminSession(sessionStorage,Date.now()+31*60*1000)).toBeNull();});it('rejects wrong password and missing configuration',async()=>{vi.stubEnv('VITE_ADMIN_DEMO_PASSWORD','demo-pass');await expect(loginAdmin({password:'wrong'})).rejects.toThrow('Incorrect password');vi.stubEnv('VITE_ADMIN_DEMO_PASSWORD','');await expect(loginAdmin({password:'x'})).rejects.toThrow('not configured');});it('logs out',async()=>{vi.stubEnv('VITE_ADMIN_DEMO_PASSWORD','demo-pass');await loginAdmin({password:'demo-pass'});await logoutAdmin();expect(getAdminSession()).toBeNull();});});
+import { beforeEach, describe, it, expect, vi } from "vitest";
+import {
+	loginAdmin,
+	getAdminSession,
+	logoutAdmin,
+} from "../services/adminAuth.js";
+describe("demo admin auth", () => {
+	beforeEach(() => {
+		vi.stubEnv("VITE_ENABLE_FIREBASE", "false");
+		sessionStorage.clear();
+	});
+	it("logs in with configured demo password and expires after 30 minutes", async () => {
+		vi.stubEnv("VITE_ADMIN_DEMO_PASSWORD", "demo-pass");
+		await loginAdmin({ email: "admin@example.com", password: "demo-pass" });
+		expect(getAdminSession()).toMatchObject({ email: "admin@example.com" });
+		expect(
+			getAdminSession(sessionStorage, Date.now() + 31 * 60 * 1000),
+		).toBeNull();
+	});
+	it("rejects wrong password and missing configuration", async () => {
+		vi.stubEnv("VITE_ADMIN_DEMO_PASSWORD", "demo-pass");
+		await expect(loginAdmin({ password: "wrong" })).rejects.toThrow(
+			"Incorrect password",
+		);
+		vi.stubEnv("VITE_ADMIN_DEMO_PASSWORD", "");
+		await expect(loginAdmin({ password: "x" })).rejects.toThrow(
+			"not configured",
+		);
+	});
+	it("logs out", async () => {
+		vi.stubEnv("VITE_ADMIN_DEMO_PASSWORD", "demo-pass");
+		await loginAdmin({ password: "demo-pass" });
+		await logoutAdmin();
+		expect(getAdminSession()).toBeNull();
+	});
+});

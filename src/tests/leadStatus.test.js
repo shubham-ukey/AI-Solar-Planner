@@ -1,3 +1,31 @@
-import { describe,it,expect } from 'vitest';
-import { allowedStatusTransitions,canTransitionLeadStatus,transitionLeadStatus } from '../utils/leadStatus.js';
-describe('lead status pipeline',()=>{it('allows only defined forward transitions and Closed Lost reopening to Lead',()=>{expect(allowedStatusTransitions('Lead')).toEqual(['Survey Done','Closed Lost']);expect(canTransitionLeadStatus('Proposal Sent','Approved')).toBe(true);expect(canTransitionLeadStatus('Installed','Lead')).toBe(false);expect(canTransitionLeadStatus('Closed Lost','Lead')).toBe(true);expect(canTransitionLeadStatus('Closed Lost','Approved')).toBe(false);});it('records transition history and updatedAt',()=>{const next=transitionLeadStatus({status:'Lead',statusHistory:[]},'Survey Done','2026-10-17T00:00:00.000Z');expect(next.status).toBe('Survey Done');expect(next.updatedAt).toBe('2026-10-17T00:00:00.000Z');expect(next.statusHistory).toHaveLength(1);expect(()=>transitionLeadStatus({status:'Installed'},'Lead')).toThrow();});});
+import { describe, it, expect } from "vitest";
+import {
+	allowedStatusTransitions,
+	canTransitionLeadStatus,
+	transitionLeadStatus,
+} from "../utils/leadStatus.js";
+describe("lead status pipeline", () => {
+	it("allows only defined forward transitions and Closed Lost reopening to Lead", () => {
+		expect(allowedStatusTransitions("Lead")).toEqual([
+			"Survey Done",
+			"Closed Lost",
+		]);
+		expect(canTransitionLeadStatus("Proposal Sent", "Approved")).toBe(true);
+		expect(canTransitionLeadStatus("Installed", "Lead")).toBe(false);
+		expect(canTransitionLeadStatus("Closed Lost", "Lead")).toBe(true);
+		expect(canTransitionLeadStatus("Closed Lost", "Approved")).toBe(false);
+	});
+	it("records transition history and updatedAt", () => {
+		const next = transitionLeadStatus(
+			{ status: "Lead", statusHistory: [] },
+			"Survey Done",
+			"2026-10-17T00:00:00.000Z",
+		);
+		expect(next.status).toBe("Survey Done");
+		expect(next.updatedAt).toBe("2026-10-17T00:00:00.000Z");
+		expect(next.statusHistory).toHaveLength(1);
+		expect(() =>
+			transitionLeadStatus({ status: "Installed" }, "Lead"),
+		).toThrow();
+	});
+});

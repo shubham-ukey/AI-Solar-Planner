@@ -1,3 +1,40 @@
-import React from 'react';import {describe,it,expect,beforeEach} from 'vitest';import {render,screen,fireEvent,waitFor} from '@testing-library/react';import {I18nProvider,useI18n} from '../context/I18nContext.jsx';
-function Probe(){const {language,setLanguage,t}=useI18n();return <div><span>{t('home')}</span><span>{t('missing.key')}</span><button onClick={()=>setLanguage(language==='en'?'hi':'en')}>toggle</button></div>}
-describe('language toggle',()=>{beforeEach(()=>localStorage.clear());it('persists language, updates html lang, and translates known keys',async()=>{render(<I18nProvider><Probe/></I18nProvider>);expect(screen.getByText('Home')).toBeTruthy();fireEvent.click(screen.getByText('toggle'));expect(screen.getByText('होम')).toBeTruthy();await waitFor(()=>expect(document.documentElement.lang).toBe('hi'));expect(localStorage.getItem('solar-language')).toBe('hi')});it('falls back to English then key for missing translations',()=>{render(<I18nProvider><Probe/></I18nProvider>);expect(screen.getByText('Home')).toBeTruthy();expect(screen.getByText('missing.key')).toBeTruthy()})});
+import React from "react";
+import { describe, it, expect, beforeEach } from "vitest";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { I18nProvider, useI18n } from "../context/I18nContext.jsx";
+function Probe() {
+	const { language, setLanguage, t } = useI18n();
+	return (
+		<div>
+			<span>{t("home")}</span>
+			<span>{t("missing.key")}</span>
+			<button onClick={() => setLanguage(language === "en" ? "hi" : "en")}>
+				toggle
+			</button>
+		</div>
+	);
+}
+describe("language toggle", () => {
+	beforeEach(() => localStorage.clear());
+	it("persists language, updates html lang, and translates known keys", async () => {
+		render(
+			<I18nProvider>
+				<Probe />
+			</I18nProvider>,
+		);
+		expect(screen.getByText("Home")).toBeTruthy();
+		fireEvent.click(screen.getByText("toggle"));
+		expect(screen.getByText("होम")).toBeTruthy();
+		await waitFor(() => expect(document.documentElement.lang).toBe("hi"));
+		expect(localStorage.getItem("solar-language")).toBe("hi");
+	});
+	it("falls back to English then key for missing translations", () => {
+		render(
+			<I18nProvider>
+				<Probe />
+			</I18nProvider>,
+		);
+		expect(screen.getByText("Home")).toBeTruthy();
+		expect(screen.getByText("missing.key")).toBeTruthy();
+	});
+});
